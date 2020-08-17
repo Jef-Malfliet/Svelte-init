@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../Svelte-init/src/img/logo_svelte-init.png">
+  <img src="./src/img/logo_svelte-init.png">
 </p>
 
 <p align="center">
