@@ -1,0 +1,82 @@
+#!/bin/bash
+set -o errexit
+set -o nounset
+
+PROJECTNAME=""
+DIRECTORY=""
+CODE=false
+
+checkDirectory() {
+    # check if directory must be made
+    if [ "$1" != "" ] && [ ! -d "$1" ]; then
+        # make directory
+        mkdir -p $1
+
+        # cd to directory
+        cd $1
+    fi
+}
+
+installSvelte() {
+    # get svelte setup
+    npx degit sveltejs/template $1
+
+    # cd to directory of project
+    cd $1
+
+    # install all dependecies
+    npm install
+    npm audit fix
+
+    # open project in vs code
+    shift
+    if [ "$1" == "true" ]; then
+        code .
+    fi
+}
+
+usage() {
+    # not ready
+    cat <<EOF
+
+svelte-init [project-name [-d directory] [-c]] | [-h]
+
+    -d | --directory    Specify the directory in which the svelte project must be
+                        initialized. Directory must not already exist.
+    -c | --code         Open new svelte project in visual studio code.
+    -h | --help         Get info over usage of svelte-init.
+EOF
+}
+
+# cycle through parameters to set variables
+if [ $# -gt 0 ]; then
+    while [ $# -gt 0 ]; do
+        case $1 in
+        -h | --help)
+            usage
+            exit
+            ;;
+        -d | --directory)
+            shift
+            DIRECTORY=$1
+            ;;
+        -c | --code)
+            CODE=true
+            ;;
+        *)
+            if [ "$PROJECTNAME" == "" ]; then
+                PROJECTNAME=$1
+            else
+                printf "usage: \"svelte-init [project-name [-d directory] [-c]] | [-h]\""
+                exit
+            fi
+            ;;
+        esac
+        shift
+    done
+else
+    printf "usage: \"svelte-init [project-name [-d directory] [-c]] | [-h]\""
+    exit
+fi
+checkDirectory $DIRECTORY
+installSvelte $PROJECTNAME $CODE
