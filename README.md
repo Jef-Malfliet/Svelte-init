@@ -1,15 +1,21 @@
-Svelte-init is a tool to quickly create a new Svelte project from your commandline.
+<p align="center">
+  <img src="../Svelte-init/src/img/logo_svelte-init.png">
+</p>
 
-## Install
+<p align="center">
+   Svelte-init is a tool to quickly create a new <a href="https://svelte.dev">Svelte project</a> from your commandline.
+</p>
 
-1. Get the svelte-init file from the latest release.
+## Install 🔩
+
+1. Get the svelte-init file from the latest [release](https://github.com/Jef-Malfliet/Svelte-init/releases).
 2. Open a terminal.
 3. Copy the file to a directory that is part of the global PATH variable:
    ```{shell}
     cp svelte-init /usr/local/bin/
    ```
 
-## Usage
+## Usage 🚀
 ```
 svelte-init [project-name [-d directory] [-c]] | [-h]
 
@@ -20,4 +26,4 @@ svelte-init [project-name [-d directory] [-c]] | [-h]
 ```
 
 ## License
-MIT © Jef Malfliet
+MIT © Jef Malfliet ([twitter](https://twitter.com/Tjaaaaaf), [linkedIn](https://www.linkedin.com/in/jefmalfliet))
